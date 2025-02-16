@@ -11,19 +11,24 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 500px;
+    min-height: 100vh; /* Ensure full viewport height */
 }
 
-div#root {
-    height: 100%;
+#root {
     width: 100%;
-    max-height: 500px;
-    max-width: 500px;
+    max-width: 100%; /* Prevent overflow */
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Add some padding if needed */
+    box-sizing: border-box; /* Include padding in width/height calculations */
 }
 
 main {
     background-color: #F5F5F5;
-    height: 100%;
+    width: 100%; /* Take full width of the body */
+    max-width: 500px; /* Limit maximum width for better readability */
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -31,10 +36,12 @@ main {
     align-items: center;
     padding: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 0 auto; /* Center the main element horizontally */
+    box-sizing: border-box; /* Include padding in width/height calculations */
 }
 
 .title {
-    font-size: 2.5rem;
+    font-size: 2.5rem; /* Adjusted for better scaling */
     margin: 0;
     color: #2B283A;
     text-transform: uppercase;
@@ -42,6 +49,7 @@ main {
 }
 
 .instructions {
+    font-size: 1.2rem; /* Adjusted for better scaling */
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     margin: 10px 0;
@@ -53,9 +61,10 @@ main {
 
 .dice-container {
     display: grid;
-    grid-template: auto auto / repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr); /* 5 dice per row by default */
     gap: 15px;
     margin-bottom: 20px;
+    width: 90%;
 }
 
 button {
@@ -134,6 +143,7 @@ button.roll-dice:active {
     max-width: 400px;
     color: #2B283A;
 }
+
 .stats p {
     display: flex;
     align-items: center;
@@ -141,54 +151,46 @@ button.roll-dice:active {
 }
 
 /* Media Queries for Responsiveness */
-@media (max-width: 600px) {
-    div#root {
-        max-height: 100%;
-        max-width: 100%;
-    }
-
-    main {
-        padding: 15px;
-    }
-
+@media screen and (max-width: 600px) {
     .title {
-        font-size: 2rem;
+        font-size: 2rem; /* Smaller title for mobile */
     }
 
     .instructions {
-        font-size: 0.9rem;
+        font-size: 1rem; /* Smaller instructions for mobile */
     }
 
     .dice-container {
+        grid-template-columns: repeat(3, 1fr); /* 2 dice per row on mobile */
         gap: 10px;
     }
 
     .dice-container button {
         height: 50px;
         width: 50px;
-        font-size: 1.5rem;
+        font-size: 1.5rem; /* Smaller dice for mobile */
     }
 
     button.roll-dice {
         padding: 8px 20px;
-        font-size: 1rem;
+        font-size: 1rem; /* Smaller button text for mobile */
     }
 
     .stats {
-        font-size: 1rem;
+        font-size: 1rem; /* Smaller stats for mobile */
     }
 }
 
-@media (max-width: 400px) {
+@media screen and (max-width: 400px) {
     .dice-container {
-        grid-template: auto auto / repeat(3, 1fr);
-        gap: 8px;
+        grid-template-columns: repeat(2,1fr);
+        gap: 8px; /* Smaller gap for very small screens */
     }
 
     .dice-container button {
         height: 45px;
         width: 45px;
-        font-size: 1.25rem;
+        font-size: 1.25rem; /* Even smaller dice for very small screens */
     }
 
     .stats {
